@@ -98,9 +98,28 @@ class PlayingsportController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePlayingsportRequest $request, Playingsport $playingsport)
+    public function update(UpdatePlayingsportRequest $request, Playingsport $playingsport, int $id)
     {
         //
+           $row = $playingsport::find($id);
+        if ($row) {
+            # code...
+            $status = 200;
+            $row->update($request->all());
+            $data = [
+                'message' => 'OK',
+                'data' => [$row]
+            ];
+        } else {
+            $status = 404;
+            $data = [
+                'message' => "Patch error. Not_Found id: $id ",
+                'data' => null
+            ];
+        }
+        return response()->json($data, $status, options: JSON_UNESCAPED_UNICODE);
+
+
     }
 
     /**

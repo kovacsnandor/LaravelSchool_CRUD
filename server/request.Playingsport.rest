@@ -133,13 +133,13 @@ Authorization: Bearer {{token}}
 
 
 ### post playingsports
-PATCH {{host}}/api/products/1
+PATCH {{host}}/api/playingsports/1
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 
 {
-    "price": 1002,
-    "stock": "eee"
+    "studentId": 1,
+    "sportId": 8
 }
