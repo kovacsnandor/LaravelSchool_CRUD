@@ -11,7 +11,7 @@ class StoreSportRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreSportRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => 'nullable',
+            'sportNev' => 'required|string',
         ];
     }
 }
