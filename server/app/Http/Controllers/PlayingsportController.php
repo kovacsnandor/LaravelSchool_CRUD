@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Playingsport;
 use App\Http\Requests\StorePlayingsportRequest;
 use App\Http\Requests\UpdatePlayingsportRequest;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 
 class PlayingsportController extends Controller
@@ -40,9 +41,34 @@ class PlayingsportController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(int $id)
+    public function store(StorePlayingsportRequest $request)
     {
-       
+        try {
+            $row = Playingsport::create($request->all());
+ 
+            $data = [
+                'message' => 'ok',
+                'data' => $row
+            ];
+            // Sikeres válasz: 201 Created kód ajánlott új erőforrás létrehozásakor
+            return response()->json($data, 201, options: JSON_UNESCAPED_UNICODE);
+        } catch (QueryException $e) {
+            // Ellenőrizzük, hogy ez egy "Duplicate entry for key" hiba-e (MySQL hibakód: 23000 vagy 1062)
+            if ($e->getCode() == 23000 || str_contains($e->getMessage(), 'Duplicate entry')) {
+                $data = [
+                    'message' => 'Insert error: The given Id(-s) do not exists in database , please, choose another one.',
+                    'data' => [
+                        'name' => $request->input('name') // Visszaküldhetjük, mi volt a hibás
+                    ]
+                ];
+                // Kliens hiba, ami jelzi a kérés érvénytelenségét
+                
+                return response()->json($data, 409, options: JSON_UNESCAPED_UNICODE); // 409 Conflict ajánlott
+            }
+ 
+            // Ha nem ez a hiba volt, dobjuk tovább az eredeti kivételt, vagy kezeljük másképp
+            throw $e;
+        }
     }
 
     /**

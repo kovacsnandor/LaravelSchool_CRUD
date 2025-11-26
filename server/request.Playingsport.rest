@@ -109,24 +109,20 @@ Authorization: Bearer {{token}}
 
 
 ### get product by id
-get {{host}}/api/playingsports/14153252
+get {{host}}/api/playingsports/2
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 ### post products
-POST  {{host}}/api/products
+POST  {{host}}/api/playingsports
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "category": "Bogyós",
-    "name": "f3333xx",
-    "description": "Kézzel termelt egészség",
-    "picture": "https:\/\/hur.webmania.cc\/img\/malna.jpg",
-    "price": 8000,
-    "stock": 22
+    "studentId": 1,
+    "sportId": 29
 }
 
 ### delete product by id

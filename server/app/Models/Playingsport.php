@@ -9,4 +9,8 @@ class Playingsport extends Model
 {
     /** @use HasFactory<\Database\Factories\PlayingsportsFactory> */
     use HasFactory;
+     protected $fillable = [
+        'studentId',
+        'sportId',
+    ];
 }
