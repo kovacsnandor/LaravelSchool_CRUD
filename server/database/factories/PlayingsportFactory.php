@@ -8,7 +8,7 @@ use App\Models\Playingsport;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\playingsports>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Playingsport>
  */
 class PlayingsportFactory extends Factory
 {
