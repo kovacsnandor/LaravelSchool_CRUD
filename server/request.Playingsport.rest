@@ -109,7 +109,7 @@ Authorization: Bearer {{token}}
 
 
 ### get product by id
-get {{host}}/api/products/1
+get {{host}}/api/playingsports/14153252
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{token}}
