@@ -24,37 +24,32 @@ Content-Type: application/json
 ### get sports
 GET  {{host}}/api/sports
 Accept: application/json
-Authorization: Bearer {{token}}
+# Authorization: Bearer {{token}}
 
 ### get sport by id
-GET  {{host}}/api/sports/32
+GET  {{host}}/api/sports/30
 Accept: application/json
-Authorization: Bearer {{token}}
 
 ### post sport
 POST {{host}}/api/sports 
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer {{token}}
 
 {
     "sportNev": "Táj csí"
 }
 
 ### patch sport
-PATCH {{host}}/api/sports/32
+PATCH {{host}}/api/sports/39
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer {{token}}
 
 {
-    "id": 32,
     "sportNev": "Táj csí"
 }
 
 ### delete sport
-DELETE {{host}}/api/sports/34
+DELETE {{host}}/api/sports/41
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer {{token}}
 

@@ -17,7 +17,7 @@ class SportController extends Controller
         //
         try {
             $rows = Sport::all();
-           
+
             $status = 200;
             $data = [
                 'message' => 'OK',
@@ -42,7 +42,7 @@ class SportController extends Controller
         //
         try {
             $row = Sport::create($request->all());
- 
+
             $data = [
                 'message' => 'ok',
                 'data' => $row
@@ -55,13 +55,13 @@ class SportController extends Controller
                 $data = [
                     'message' => 'Insert error: The given name already exists, please choose another one',
                     'data' => [
-                        'name' => $request->input('name') // Visszaküldhetjük, mi volt a hibás
+                        'sportNev' => $request->input('sportNev') // Visszaküldhetjük, mi volt a hibás
                     ]
                 ];
                 // Kliens hiba, ami jelzi a kérés érvénytelenségét
                 return response()->json($data, 409, options: JSON_UNESCAPED_UNICODE); // 409 Conflict ajánlott
             }
- 
+
             // Ha nem ez a hiba volt, dobjuk tovább az eredeti kivételt, vagy kezeljük másképp
             throw $e;
         }
@@ -81,15 +81,15 @@ class SportController extends Controller
                 'data' => $row
             ];
         } else {
- 
+
             $status = 404;
             $data = [
                 'message' => "Not found id: $id",
                 'data' => null
             ];
- 
+
         }
- 
+
         return response()->json($data, $status, options: JSON_UNESCAPED_UNICODE);
 
     }
@@ -97,57 +97,71 @@ class SportController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSportRequest $request, Sport $sport)
+    public function update(UpdateSportRequest $request, int $id)
     {
         //
-        $row = Sport::find($sport);
-        if ($row) {
-            $status = 200;
-            $row->update($request->all());
-            $data = [
-                'message' => 'OK',
-                'data' => [$row],
-           
-            ];
-        } else {
- 
-            $status = 404;
-            $data = [
-                'message' => "Patch error. Not found id: $sport",
-                'data' => null
-            ];
- 
+
+
+        try {
+            $row = Sport::find($id);
+            if ($row) {
+                $status = 200;
+                $row->update($request->all());
+                $data = [
+                    'message' => 'OK',
+                    'data' => [$row],
+
+                ];
+            } else {
+
+                $status = 404;
+                $data = [
+                    'message' => "Patch error. Not found id: $id",
+                    'data' => null
+                ];
+
+            }
+            return response()->json($data, $status, options: JSON_UNESCAPED_UNICODE);
+        } catch (QueryException $e) {
+            // Ellenőrizzük, hogy ez egy "Duplicate entry for key" hiba-e (MySQL hibakód: 23000 vagy 1062)
+            if ($e->getCode() == 23000 || str_contains($e->getMessage(), 'Duplicate entry')) {
+                $data = [
+                    'message' => 'Insert error: The given name already exists, please choose another one',
+                    'data' => [
+                        'sportNev' => $request->input('sportNev') // Visszaküldhetjük, mi volt a hibás
+                    ]
+                ];
+                // Kliens hiba, ami jelzi a kérés érvénytelenségét
+                return response()->json($data, 409, options: JSON_UNESCAPED_UNICODE); // 409 Conflict ajánlott
+            }
+
+            // Ha nem ez a hiba volt, dobjuk tovább az eredeti kivételt, vagy kezeljük másképp
+            throw $e;
         }
-        return response()->json($data, $status, options: JSON_UNESCAPED_UNICODE);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Sport $id)
+    public function destroy($id)
     {
         //
-        $row = Sport::find($id);
-        if ($row) {
-            $status = 200;
-            $row->delete($id);
-            $data = [
-                'message' => 'OK',
-                'data' => [
-                    'id' =>$id
-                ],
-           
-            ];
-        } else {
- 
-            $status = 404;
-            $data = [
-                'message' => "Not found id: $id",
-                'data' => null
-            ];
- 
-        }
-        return response()->json($data, $status, options: JSON_UNESCAPED_UNICODE);
-    }
-    }
+        // Megkeressük az osztályt az ID alapján
+        $sport = Sport::find($id);
 
+        if (!$sport) {
+            return response()->json([
+                'message' => 'Nem OK',
+                'data' => null
+            ], 404, [], JSON_UNESCAPED_UNICODE);
+        }
+
+        // Törlés
+        $sport->delete();
+
+        return response()->json([
+            'message' => 'OK',
+            'data' => null
+        ], 200, [], JSON_UNESCAPED_UNICODE);
+    }
+}
