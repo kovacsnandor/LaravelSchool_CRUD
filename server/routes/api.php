@@ -3,6 +3,7 @@
 use App\Http\Controllers\PlayingsportController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SchoolclassController;
+use App\Http\Controllers\SportController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -74,4 +75,12 @@ Route::get('schoolclasses/{id}', [SchoolclassController::class, 'show']);
 Route::post('schoolclasses', [SchoolclassController::class, 'store']);
 Route::patch('schoolclasses/{id}', [SchoolclassController::class, 'update']);
 Route::delete('schoolclasses/{id}', [SchoolclassController::class, 'destroy']);
+//endregion
+
+//region Sport
+Route::get('sports', [SportController::class, 'index']);
+Route::get('sports/{id}', [SportController::class, 'show']);
+Route::post('sports', [SportController::class, 'store']);
+Route::patch('sports/{id}', [SportController::class, 'update']);
+Route::delete('sports/{id}', [SportController::class, 'destroy']);
 //endregion
