@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Models\playingsport;
 use Illuminate\Auth\Access\Response;
 
-class PlayingsportsPolicy
+class PlayingsportPolicy
 {
     /**
      * Determine whether the user can view any models.

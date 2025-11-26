@@ -6,7 +6,7 @@ use App\Models\Sport;
 use App\Http\Requests\StoreSportRequest;
 use App\Http\Requests\UpdateSportRequest;
 
-class SportsController extends Controller
+class SportController extends Controller
 {
     /**
      * Display a listing of the resource.
