@@ -31,7 +31,7 @@ class PlayingsportController extends Controller
             ];
         }
         
-           $sql = 'SELECT * FROM instruments';
+           $sql = 'SELECT * FROM playingsports';
            $rows = DB::select($sql);
         return response()->json($data, $status, options: JSON_UNESCAPED_UNICODE);
     
