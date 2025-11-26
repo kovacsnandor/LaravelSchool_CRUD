@@ -102,7 +102,7 @@ Authorization: Bearer {{token}}
 get {{host}}/api/x
 
 ### get products
-get {{host}}/api/products
+get {{host}}/api/playingsports
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{token}}
