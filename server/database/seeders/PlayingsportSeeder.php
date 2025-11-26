@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Helpers\CsvReader;
 use App\Models\Playingsport;
-use App\Models\Schoolclass;
 use App\Models\Student;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -23,7 +22,10 @@ class PlayingsportSeeder extends Seeder
         $numberOfStudent = Student::count();
         $numberOfAthletes = round($numberOfStudent + $percentageOfStudentsPlayingSports);
         $numberOfSports = round($numberOfAthletes + $avarageNumberOfSportsAStudentPlays);
-        Playingsport::factory()->count($numberOfSports)->create();
+        //Playingsport::factory()->count($numberOfSports)->create();
+        for ($i=0; $i < $numberOfSports; $i++) { 
+            Playingsport::factory()->create();
+        }
 
     }
 }

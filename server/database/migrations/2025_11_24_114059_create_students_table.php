@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('szulHelyseg')->nullable();
             $table->date('szulDatum')->nullable();
             $table->string('igazolvanyszam')->nullable();
+            $table->unique('igazolvanyszam');
             $table->decimal('atlag', 2, 1)->nullable();
             $table->decimal('osztondij', 10, 0)->nullable();
             $table->timestamps();

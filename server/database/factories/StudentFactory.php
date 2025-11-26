@@ -71,7 +71,7 @@ class StudentFactory extends Factory
         $lakHelyseg = $this->faker->city();
         $szulHelyseg = $this->faker->city();
         $lakCim = $this->faker->streetAddress();
-        $igazolvanyszam = strtoupper($this->faker->bothify('??######'));
+        $igazolvanyszam = strtoupper($this->faker->unique()->bothify('??######'));
 
         // Átlag – FIX
         $atlag = rand(10, 50) / 10;  // 1.0 - 5.0 pontos tizedes
