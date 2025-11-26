@@ -150,4 +150,32 @@ Authorization: Bearer {{token}}
 
 
 ### get classes
-GET {{host}}/api/x
+GET {{host}}/api/schoolclasses
+
+### get class by id
+GET {{host}}/api/schoolclasses/25
+
+### post class
+POST {{host}}/api/schoolclasses
+Accept: application/json
+Content-Type: application/json
+
+{
+    "osztalyNev": "8d"
+}
+
+### delete class by id
+DELETE {{host}}/api/schoolclasses/25
+Content-Type: application/json
+Accept: application/json
+
+### patch class by id
+PATCH {{host}}/api/schoolclasses/26
+Accept: application/json
+Content-Type: application/json
+
+{
+    "osztalyNev": "8e"
+}
+
+
