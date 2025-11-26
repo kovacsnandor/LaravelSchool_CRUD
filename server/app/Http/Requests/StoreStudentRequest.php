@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreStudentRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class StoreStudentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +24,15 @@ class StoreStudentRequest extends FormRequest
     {
         return [
             //
+            'igazolvanyszam' => [
+                'required',
+                'string',
+                'max:20',
+                Rule::unique('students')->where(
+                    fn($query) =>
+                    $query->where('schoolclassId', request('schoolclassId'))
+                ),
+            ],
         ];
     }
 }

@@ -160,25 +160,24 @@ GET {{host}}/api/students/567
 ###delete students by id
 delete {{host}}/api/students/568
 
-# ###post students
-# POST  {{host}}/api/students
-# Accept: application/json
-# Content-Type: application/json
+###post students
+POST  {{host}}/api/students
+Accept: application/json
+Content-Type: application/json
 
-# {
-#     "id": 123,
-#     "diakNev": "Tóth Márton",
-#     "schoolclassId": 3,
-#     "neme": true,
-#     "iranyitoszam": "4024",
-#     "lakHelyseg": "Debrecen",
-#     "lakCim": "Kossuth utca 18.",
-#     "szulHelyseg": "Nyíregyháza",
-#     "szulDatum": "2007.11.23",
-#     "igazolvanyszam": "AB482917",
-#     "atlag": 3.7,
-#     "osztondij": 25000
-# }
+{
+    "diakNev": "Tóth Márton",
+    "schoolclassId": 3,
+    "neme": true,
+    "iranyitoszam": "4024",
+    "lakHelyseg": "Debrecen",
+    "lakCim": "Kossuth utca 18.",
+    "szulHelyseg": "Nyíregyháza",
+    "szulDatum": "2007.11.23",
+    "igazolvanyszam": "AB482817",
+    "atlag": 3.7,
+    "osztondij": 25000
+}
 
 
 
