@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Http\Controllers\Controller;
-use Illuminate\Auth;
 
 class SchoolclassController extends Controller
 {
@@ -108,8 +107,7 @@ class SchoolclassController extends Controller
             $status = 200;
             //Szabd-e ezt nekem?
             $userToUpdate = $row;
-            $this->authorize('updateAdmin', $userToUpdate);
-
+    
             $row->update($request->all());
 
             $data = [
@@ -132,23 +130,25 @@ class SchoolclassController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Schoolclass $schoolclass, Schoolclass $request)
-    {
-        //Kivesszük a törlendő user-t
-        $classToDestroy = $request->user();
-        // A Policy-t használjuk: 
-        $this->authorize('delete', $classToDestroy);
-        // ... törlés logika
-        //A user tokenjeinek törlése
-        $classToDestroy->tokens()->delete();
-        //A user törlése
-        $classToDestroy->delete();
 
-        $status = 404;
-        $data = [
-            'message' => "Sikeresen törölted az osztalyod!!!!!!!",
+public function destroy($id)
+{
+    // Megkeressük az osztályt az ID alapján
+    $schoolclass = Schoolclass::find($id);
+
+    if (!$schoolclass) {
+        return response()->json([
+            'message' => 'Az osztály nem található!',
             'data' => null
-        ];
-        return response()->json($data, $status, options: JSON_UNESCAPED_UNICODE);
+        ], 404, [], JSON_UNESCAPED_UNICODE);
     }
+
+    // Törlés
+    $schoolclass->delete();
+
+    return response()->json([
+        'message' => 'Sikeresen törölted az osztályt!',
+        'data' => null
+    ], 200, [], JSON_UNESCAPED_UNICODE);
+}
 }
