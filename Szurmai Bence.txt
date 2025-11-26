@@ -1,8 +1,23 @@
 admin: 	-mindent tud, saját magát nem tudja törölni és megváltoztatni a szerepét de masokét igen.
 
-tanár:	-Meg tudja tekinteni  az osztályok adatait
-	-Meg tudja tekinteni , modositani a diakok adatait
-	-szerepet nem tudja valtoztatni
-	
+tanár:	
+- Meg tudja tekinteni:
+	- get össze tábla
+	- post: diak
+	- patch: diak
+	- delete: diak
+	- speciális lekérdezések
 
-diak: 	-megtakintheti de csak korlátozottan (tul szemelyes informaciokat nem  láthat mint pl lakcim  , telefonszam)
+
+diak: 	
+	- get: /api/classes
+	- get: /api/sports
+	- get: /api/plaingsports
+
+Speciális tekérdezések
+- get /api/studentofclass/1 :
+	- Adott osztály tanulóinak a névsora
+- get /api/classsizes
+- get /api/sizeofschool
+
+
