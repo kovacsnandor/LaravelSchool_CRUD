@@ -45,7 +45,7 @@ class SchoolclassController extends Controller
      */
     public function store(StoreSchoolclassRequest $request)
     {
-         try {
+        try {
             $row = Schoolclass::create($request->all());
 
             $data = [
@@ -100,55 +100,69 @@ class SchoolclassController extends Controller
      */
     public function update(UpdateSchoolclassRequest $request, int $id)
     {
-        $row = Schoolclass::find($id);
-        
-        if ($row) {
-            # code...
-            $status = 200;
-            //Szabd-e ezt nekem?
-            $userToUpdate = $row;
-    
-            $row->update($request->all());
+        try {
+            $row = Schoolclass::find($id);
 
-            $data = [
-                'message' => 'OK',
-                'data' => [
-                    'data' => $row
-                ]
-            ];
-        } else {
-            # code...
-            $status = 404;
-            $data = [
-                'message' => "Patch error. Not found id: $id",
-                'data' => $id
-            ];
+            if ($row) {
+                # code...
+                $status = 200;
+
+                $row->update($request->all());
+
+                $data = [
+                    'message' => 'OK',
+                    'data' => [
+                        'data' => $row
+                    ]
+                ];
+            } else {
+                # code...
+                $status = 404;
+                $data = [
+                    'message' => "Patch error. Not found id: $id",
+                    'data' => $id
+                ];
+            }
+            return response()->json($data, $status, options: JSON_UNESCAPED_UNICODE);
+        } catch (QueryException $e) {
+            // Ellenőrizzük, hogy ez egy "Duplicate entry for key" hiba-e (MySQL hibakód: 23000 vagy 1062)
+            if ($e->getCode() == 23000 || str_contains($e->getMessage(), 'Duplicate entry')) {
+                $data = [
+                    'message' => 'Insert error: The given name already exists, please choose another one',
+                    'data' => [
+                        'osztalyNev' => $request->input('osztalyNev') // Visszaküldhetjük, mi volt a hibás
+                    ]
+                ];
+                // Kliens hiba, ami jelzi a kérés érvénytelenségét
+                return response()->json($data, 409, options: JSON_UNESCAPED_UNICODE); // 409 Conflict ajánlott
+            }
+            // Ha nem ez a hiba volt, dobjuk tovább az eredeti kivételt, vagy kezeljük másképp
+            throw $e;
         }
-        return response()->json($data, $status, options: JSON_UNESCAPED_UNICODE);
     }
 
     /**
      * Remove the specified resource from storage.
      */
 
-public function destroy($id)
-{
-    // Megkeressük az osztályt az ID alapján
-    $schoolclass = Schoolclass::find($id);
+    public function destroy($id)
+    {
+        // Megkeressük az osztályt az ID alapján
+        $schoolclass = Schoolclass::find($id);
 
-    if (!$schoolclass) {
+        if (!$schoolclass) {
+            return response()->json([
+                'message' => 'Az osztály nem található!',
+                'data' => null
+            ], 404, [], JSON_UNESCAPED_UNICODE);
+        }
+
+        // Törlés
+        $schoolclass->delete();
+
         return response()->json([
-            'message' => 'Az osztály nem található!',
+            'message' => 'Sikeresen törölted az osztályt!',
             'data' => null
-        ], 404, [], JSON_UNESCAPED_UNICODE);
+        ], 200, [], JSON_UNESCAPED_UNICODE);
     }
-
-    // Törlés
-    $schoolclass->delete();
-
-    return response()->json([
-        'message' => 'Sikeresen törölted az osztályt!',
-        'data' => null
-    ], 200, [], JSON_UNESCAPED_UNICODE);
-}
 }

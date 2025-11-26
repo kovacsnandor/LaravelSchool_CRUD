@@ -101,54 +101,6 @@ Authorization: Bearer {{token}}
 ### teszt
 get {{host}}/api/x
 
-### get products
-get {{host}}/api/products
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
-
-### get product by id
-get {{host}}/api/products/1
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
-### post products
-POST  {{host}}/api/products
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
-{
-    "category": "Bogyós",
-    "name": "f3333xx",
-    "description": "Kézzel termelt egészség",
-    "picture": "https:\/\/hur.webmania.cc\/img\/malna.jpg",
-    "price": 8000,
-    "stock": 22
-}
-
-### delete product by id
-delete {{host}}/api/products/104
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
-
-### post products
-PATCH {{host}}/api/products/1
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
-
-{
-    "price": 1002,
-    "stock": "eee"
-}
-
-
 ### get classes
 GET {{host}}/api/schoolclasses
 
@@ -165,17 +117,17 @@ Content-Type: application/json
 }
 
 ### delete class by id
-DELETE {{host}}/api/schoolclasses/25
+DELETE {{host}}/api/schoolclasses/28
 Content-Type: application/json
 Accept: application/json
 
 ### patch class by id
-PATCH {{host}}/api/schoolclasses/26
+PATCH {{host}}/api/schoolclasses/29
 Accept: application/json
 Content-Type: application/json
 
 {
-    "osztalyNev": "8e"
+    "osztalyNev": "8h"
 }
 
 

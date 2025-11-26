@@ -13,4 +13,9 @@ class Schoolclass extends Model
     protected $fillable = [
         'osztalyNev'
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 }

@@ -22,7 +22,6 @@ class UpdateSchoolclassRequest extends FormRequest
     public function rules(): array
     {
          return [
-            'id' => 'nullable|interger',
             'osztalyNev' => 'required|string'
         ];
     }
