@@ -147,3 +147,7 @@ Authorization: Bearer {{token}}
     "price": 1002,
     "stock": "eee"
 }
+
+
+### get classes
+GET {{host}}/api/x
