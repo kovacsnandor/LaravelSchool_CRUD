@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Playingsport;
 use App\Http\Requests\StorePlayingsportRequest;
 use App\Http\Requests\UpdatePlayingsportRequest;
+use Illuminate\Support\Facades\DB;
 
 class PlayingsportController extends Controller
 {
@@ -14,6 +15,26 @@ class PlayingsportController extends Controller
     public function index()
     {
         //
+            try {
+            //code...
+            $rows = Playingsport::all();
+            $status =  200;
+            $data = [
+                'message' => 'OK',
+                'data' => $rows
+            ];
+        } catch (\Exception $e) {
+            $status =  500;
+            $data = [
+                'message' => "Server error: {$e->getCode()}",
+                'data' => $rows
+            ];
+        }
+        
+           $sql = 'SELECT * FROM instruments';
+           $rows = DB::select($sql);
+        return response()->json($data, $status, options: JSON_UNESCAPED_UNICODE);
+    
     }
 
     /**
