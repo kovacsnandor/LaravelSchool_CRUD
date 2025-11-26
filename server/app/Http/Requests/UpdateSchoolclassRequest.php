@@ -11,7 +11,7 @@ class UpdateSchoolclassRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,12 @@ class UpdateSchoolclassRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
+         return [
+            'name' => 'nullable|string',
+            'email' => 'nullable|email',
+            'password' => 'nullable',
+            'role' => 'nullable',
+            
         ];
     }
 }
