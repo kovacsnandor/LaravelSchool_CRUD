@@ -102,14 +102,14 @@ Authorization: Bearer {{token}}
 get {{host}}/api/x
 
 ### get products
-get {{host}}/api/playingsports
+get {{host}}/api/products
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 
 ### get product by id
-get {{host}}/api/playingsports/14153252
+get {{host}}/api/products/1
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{token}}
@@ -147,3 +147,7 @@ Authorization: Bearer {{token}}
     "price": 1002,
     "stock": "eee"
 }
+
+
+### get classes
+GET {{host}}/api/x
