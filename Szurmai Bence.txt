@@ -1,0 +1,8 @@
+admin: 	-mindent tud, saját magát nem tudja törölni és megváltoztatni a szerepét de masokét igen.
+
+tanár:	-Meg tudja tekinteni  az osztályok adatait
+	-Meg tudja tekinteni , modositani a diakok adatait
+	-szerepet nem tudja valtoztatni
+	
+
+diak: 	-megtakintheti de csak korlátozottan (tul szemelyes informaciokat nem  láthat mint pl lakcim  , telefonszam)

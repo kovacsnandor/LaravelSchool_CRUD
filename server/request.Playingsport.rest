@@ -101,20 +101,20 @@ Authorization: Bearer {{token}}
 ### teszt
 get {{host}}/api/x
 
-### get products
+### get playingsports
 get {{host}}/api/playingsports
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 
-### get product by id
+### get playingsports by id
 get {{host}}/api/playingsports/2
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
-### post products
+### post playingsports
 POST  {{host}}/api/playingsports
 Accept: application/json
 Content-Type: application/json
@@ -122,24 +122,24 @@ Authorization: Bearer {{token}}
 
 {
     "studentId": 1,
-    "sportId": 29
+    "sportId": 28
 }
 
-### delete product by id
-delete {{host}}/api/products/104
+### delete playingsports by id
+delete {{host}}/api/playingsports/670
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 
-### post products
-PATCH {{host}}/api/products/1
+### post playingsports
+PATCH {{host}}/api/playingsports/1
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 
 {
-    "price": 1002,
-    "stock": "eee"
+    "studentId": 1,
+    "sportId": 8
 }

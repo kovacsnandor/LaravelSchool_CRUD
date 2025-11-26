@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdatePlayingsportRequest extends FormRequest
 {
@@ -23,6 +24,11 @@ class UpdatePlayingsportRequest extends FormRequest
     {
         return [
             //
+             'studentId' => ['required','integer'
+            ,Rule::unique('playingsports')->where(fn($q)
+             =>$q->where('sportId', request('sportId'))),
+            'sportsId' => ['required', 'integer']
+        ]
         ];
     }
 }

@@ -31,9 +31,6 @@ class PlayingsportController extends Controller
                 'data' => $rows
             ];
         }
-        
-           $sql = 'SELECT * FROM playingsports';
-           $rows = DB::select($sql);
         return response()->json($data, $status, options: JSON_UNESCAPED_UNICODE);
     
     }
@@ -101,16 +98,51 @@ class PlayingsportController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePlayingsportRequest $request, Playingsport $playingsport)
+    public function update(UpdatePlayingsportRequest $request, Playingsport $playingsport, int $id)
     {
         //
+           $row = $playingsport::find($id);
+        if ($row) {
+            # code...
+            $status = 200;
+            $row->update($request->all());
+            $data = [
+                'message' => 'OK',
+                'data' => [$row]
+            ];
+        } else {
+            $status = 404;
+            $data = [
+                'message' => "Patch error. Not_Found id: $id ",
+                'data' => null
+            ];
+        }
+        return response()->json($data, $status, options: JSON_UNESCAPED_UNICODE);
+
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Playingsport $playingsport)
+    public function destroy(int $id)
     {
-        //
+        $row = Playingsport::find($id);
+        if ($row) {
+            # code...
+            $status = 200;
+            $row->delete();
+            $data = [
+                'message' => 'OK',
+                'data' => ['id' => $id]
+            ];
+        } else {
+            $status = 404;
+            $data = [
+                'message' => "Not_Found id: $id ",
+                'data' => null
+            ];
+        }
+                return response()->json($data, $status, options: JSON_UNESCAPED_UNICODE);
     }
 }
