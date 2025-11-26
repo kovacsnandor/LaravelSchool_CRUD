@@ -26,4 +26,7 @@ class StoreSportRequest extends FormRequest
             'sportNev' => 'required|string',
         ];
     }
+
+    
+
 }
