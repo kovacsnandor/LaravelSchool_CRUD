@@ -117,17 +117,17 @@ Content-Type: application/json
 }
 
 ### delete class by id
-DELETE {{host}}/api/schoolclasses/28
+DELETE {{host}}/api/schoolclasses/1
 Content-Type: application/json
 Accept: application/json
 
 ### patch class by id
-PATCH {{host}}/api/schoolclasses/29
+PATCH {{host}}/api/schoolclasses/28
 Accept: application/json
 Content-Type: application/json
 
 {
-    "osztalyNev": "8h"
+    "osztalyNev": "8boss"
 }
 
 
