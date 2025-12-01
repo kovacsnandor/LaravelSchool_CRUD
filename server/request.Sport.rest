@@ -27,7 +27,7 @@ Accept: application/json
 # Authorization: Bearer {{token}}
 
 ### get sport by id
-GET  {{host}}/api/sports/30
+GET  {{host}}/api/sports/5
 Accept: application/json
 
 ### post sport
