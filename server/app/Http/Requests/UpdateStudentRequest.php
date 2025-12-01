@@ -22,6 +22,8 @@ class UpdateStudentRequest extends FormRequest
      */
     public function rules(int $studentId): array
     {
+               // Feltételezve, hogy az ID-t a route-ból kapod, pl. students/{student}
+       $studentId = $this->route('student');  
         return [
                 'igazolvanyszam' => [          
                 'required',             
