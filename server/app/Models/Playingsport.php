@@ -13,4 +13,9 @@ class Playingsport extends Model
         'studentId',
         'sportId',
     ];
+
+    protected $hidden =[
+        'created_at',
+        'updated_at',
+    ];
 }
