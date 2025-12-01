@@ -62,28 +62,20 @@ class UserController extends Controller
             case 2:
                 //tanar
                 $abilities = [
-                    'users:get',
-                    'students:get',
-                    'schoolclasses:get',
-                    'sports:get',
-                    'playingsports:get',
                     'students:post',
                     'students:patch',
                     'students:delete',
-                    'usersme:delete',
-                    'usersme:patch',
                     'usersme:get',
+                    'usersme:patch',
+                    'usersme:delete',
                 ];
                 break;
             default:
                 //Diak
                 $abilities = [
-                    'sports:get',
-                    'schoolclasses:get',
-                    'playingsports:get',
-                    'usersme:delete',
-                    'usersme:patch',
                     'usersme:get',
+                    'usersme:patch',
+                    'usersme:delete',
                 ];
                 break;
         }
@@ -353,7 +345,7 @@ class UserController extends Controller
     public function indexSelf(Request $request)
     {
         //Kivesszük a megmutatandó usert
-        $userToGet= $request->user();
+        $userToGet = $request->user();
         // A Policy-t használjuk:
         $this->authorize('view', $userToGet);
         $status = 200;

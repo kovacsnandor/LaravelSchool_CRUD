@@ -14,129 +14,86 @@ use Illuminate\Support\Facades\Route;
 // })->middleware('auth:sanctum');
 
 //endpoint
-Route::get('/x', function(){
+Route::get('/x', function () {
     return 'API';
 });
 
 
-//region users
-//User kezelés, login, logout
-//Mindenki
 Route::post('users/login', [UserController::class, 'login']);
 Route::post('users/logout', [UserController::class, 'logout']);
 Route::post('users', [UserController::class, 'store']);
 
-//Admin:
-//minden user lekérdezése
+
+// ---------------------------------------------------------
+// USERSME (minden role-nak, csak egyszer definiáljuk!)
+// ---------------------------------------------------------
+Route::get('usersme', [UserController::class, 'indexSelf'])
+    ->middleware(['auth:sanctum', 'ability:usersme:get']);
+
+Route::patch('usersme', [UserController::class, 'updateSelf'])
+    ->middleware(['auth:sanctum', 'ability:usersme:patch']);
+
+Route::delete('usersme', [UserController::class, 'destroySelf'])
+    ->middleware(['auth:sanctum', 'ability:usersme:delete']);
+
+
+// ---------------------------------------------------------
+// ADMIN ENDPOINTS
+// ---------------------------------------------------------
 Route::get('users', [UserController::class, 'index'])
-    ->middleware('auth:sanctum', 'ability:admin');
-//Egy user lekérése
+    ->middleware(['auth:sanctum', 'ability:admin']);
+
 Route::get('users/{id}', [UserController::class, 'show'])
-    ->middleware('auth:sanctum', 'ability:admin');
-//User adatok módosítása
+    ->middleware(['auth:sanctum', 'ability:admin']);
+
 Route::patch('users/{id}', [UserController::class, 'update'])
-->middleware('auth:sanctum', 'ability:admin');
-//User törlés
+    ->middleware(['auth:sanctum', 'ability:admin']);
+
 Route::delete('users/{id}', [UserController::class, 'destroy'])
-->middleware('auth:sanctum', 'ability:admin');
-
-//User self (Amit a user önmagával csinálhat) parancsok
-Route::delete('usersme', [UserController::class, 'destroySelf'])
-->middleware('auth:sanctum', 'ability:usersme:delete');
-
-Route::patch('usersme', [UserController::class, 'updateSelf'])
-->middleware('auth:sanctum', 'ability:usersme:patch');
-
-Route::get('usersme', [UserController::class, 'indexSelf'])
-    ->middleware('auth:sanctum', 'ability:usersme:get');
-//endregion
-
-//region Tanar abilities
-Route::get('students', [UserController::class, 'index'])
-    ->middleware('auth:sanctum', 'ability:students:get');
-
-Route::get('schoolclasses', [UserController::class, 'index'])
-    ->middleware('auth:sanctum', 'ability:schoolclasses:get');
-
-Route::get('playingsports', [UserController::class, 'index'])
-    ->middleware('auth:sanctum', 'ability:playingsports:get');
-
-Route::get('sports', [UserController::class, 'index'])
-    ->middleware('auth:sanctum', 'ability:sports:get');
-
-Route::post('students', [PlayingsportController::class, 'store'])
-    ->middleware('auth:sanctum', 'ability:students:post');
-
-Route::patch('students/{id}', [UserController::class, 'update'])
-->middleware('auth:sanctum', 'ability:students:patch');
-
-Route::patch('students/{id}', [UserController::class, 'destroy'])
-->middleware('auth:sanctum', 'ability:students:delete');
-
-//Sajatmodositasok
-Route::delete('usersme', [UserController::class, 'destroySelf'])
-->middleware('auth:sanctum', 'ability:usersme:delete');
-
-Route::patch('usersme', [UserController::class, 'updateSelf'])
-->middleware('auth:sanctum', 'ability:usersme:patch');
-
-Route::get('usersme', [UserController::class, 'indexSelf'])
-    ->middleware('auth:sanctum', 'ability:usersme:get');
-//endregion
-
-//region Diak abilities
-Route::get('schoolclasses', [UserController::class, 'index'])
-    ->middleware('auth:sanctum', 'ability:schoolclasses:get');
-
-Route::get('sports', [UserController::class, 'index'])
-    ->middleware('auth:sanctum', 'ability:sports:get');
-
-Route::get('playingsports', [UserController::class, 'index'])
-    ->middleware('auth:sanctum', 'ability:playingsports:get');
-
-//sajatmodositasok
-Route::delete('usersme', [UserController::class, 'destroySelf'])
-->middleware('auth:sanctum', 'ability:usersme:delete');
-
-Route::patch('usersme', [UserController::class, 'updateSelf'])
-->middleware('auth:sanctum', 'ability:usersme:patch');
-
-Route::get('usersme', [UserController::class, 'indexSelf'])
-    ->middleware('auth:sanctum', 'ability:usersme:get');
+    ->middleware(['auth:sanctum', 'ability:admin']);
 
 
+
+//region Students
+Route::get('students', [StudentController::class, 'index']);
+Route::get('students/{id}', [StudentController::class, 'show']);
+Route::post('students', [StudentController::class, 'store'])
+    ->middleware(['auth:sanctum', 'ability:students:post']);
+Route::patch('students/{id}', [StudentController::class, 'update'])
+    ->middleware(['auth:sanctum','ability:students:patch']);
+Route::delete('students/{id}', [StudentController::class, 'destroy'])
+    ->middleware(['auth:sanctum', 'ability:students:delete']);
 //endregion
 
 //region Palyingsport
 Route::get('playingsports', [PlayingsportController::class, 'index']);
 Route::get('playingsports/{id}', [PlayingsportController::class, 'show']);
-Route::post('playingsports', [PlayingsportController::class, 'store']);
-Route::patch('playingsports/{id}', [PlayingsportController::class, 'update']);
-Route::delete('playingsports/{id}', [PlayingsportController::class, 'destroy']);
-//endregion
-
-//region Student
-Route::get('students', [StudentController::class, 'index']);
-Route::get('students/{id}', [StudentController::class, 'show']);
-Route::post('students', [StudentController::class, 'store']);
-Route::patch('students/{id}', [StudentController::class, 'update']);
-Route::delete('students/{id}', [StudentController::class, 'destroy']);
+Route::post('playingsports', [PlayingsportController::class, 'store'])
+    ->middleware(['auth:sanctum', 'ability:playingsports:post']);
+Route::patch('playingsports/{id}', [PlayingsportController::class, 'update'])
+    ->middleware(['auth:sanctum', 'ability:playingsports:patch']);
+Route::delete('playingsports/{id}', [PlayingsportController::class, 'destroy'])
+    ->middleware(['auth:sanctum', 'ability:playingsports:delete']);
 //endregion
 
 //region Schoolclass
 Route::get('schoolclasses', [SchoolclassController::class, 'index']);
 Route::get('schoolclasses/{id}', [SchoolclassController::class, 'show']);
-Route::post('schoolclasses', [SchoolclassController::class, 'store']);
-Route::patch('schoolclasses/{id}', [SchoolclassController::class, 'update']);
-Route::delete('schoolclasses/{id}', [SchoolclassController::class, 'destroy']);
+Route::post('schoolclasses', [SchoolclassController::class, 'store'])
+    ->middleware(['auth:sanctum', 'ability:schoolclasses:post']);
+Route::patch('schoolclasses/{id}', [SchoolclassController::class, 'update'])
+    ->middleware(['auth:sanctum', 'ability:schoolclasses:patch']);
+Route::delete('schoolclasses/{id}', [SchoolclassController::class, 'destroy'])
+    ->middleware(['auth:sanctum', 'ability:schoolclasses:delete']);
 //endregion
 
 //region Sport
 Route::get('sports', [SportController::class, 'index']);
 Route::get('sports/{id}', [SportController::class, 'show']);
-Route::post('sports', [SportController::class, 'store']);
-Route::patch('sports/{id}', [SportController::class, 'update']);
-Route::delete('sports/{id}', [SportController::class, 'destroy']);
+Route::post('sports', [SportController::class, 'store'])
+    ->middleware(['auth:sanctum', 'ability:sports:post']);
+Route::patch('sports/{id}', [SportController::class, 'update'])
+    ->middleware(['auth:sanctum', 'ability:sports:patch']);
+Route::delete('sports/{id}', [SportController::class, 'destroy'])
+    ->middleware(['auth:sanctum', 'ability:sports:delete']);
 //endregion
-
-

@@ -13,7 +13,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "email": "vasarlo1@example.com",
+    "email": "diak1@example.com",
     "password": "123"
 }
 
@@ -101,24 +101,24 @@ Authorization: Bearer {{token}}
 # ### teszt
 # get {{host}}/api/x
 
-# ### get products
-# get {{host}}/api/products
-# Accept: application/json
-# Content-Type: application/json
-# Authorization: Bearer {{token}}
+### get products
+get {{host}}/api/students
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
 
 
-# ### get product by id
-# get {{host}}/api/products/1
-# Accept: application/json
-# Content-Type: application/json
-# Authorization: Bearer {{token}}
+### get product by id
+get {{host}}/api/students/1
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
 
-# ### post products
-# POST  {{host}}/api/products
-# Accept: application/json
-# Content-Type: application/json
-# Authorization: Bearer {{token}}
+### post products
+POST  {{host}}/api/students
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
 
 # {
 #     "category": "Bogyós",
@@ -129,11 +129,11 @@ Authorization: Bearer {{token}}
 #     "stock": 22
 # }
 
-# ### delete product by id
-# delete {{host}}/api/products/104
-# Accept: application/json
-# Content-Type: application/json
-# Authorization: Bearer {{token}}
+### delete product by id
+delete {{host}}/api/students/673
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
 
 
 # ### post products
@@ -179,6 +179,26 @@ Content-Type: application/json
     "osztondij": 25000
 }
 
+
+###post students with token
+POST  {{host}}/api/students
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "diakNev": "Tóth Márton",
+    "schoolclassId": 3,
+    "neme": true,
+    "iranyitoszam": "4024",
+    "lakHelyseg": "Debrecen",
+    "lakCim": "Kossuth utca 18.",
+    "szulHelyseg": "Nyíregyháza",
+    "szulDatum": "2007.11.23",
+    "igazolvanyszam": "AB482895",
+    "atlag": 3.7,
+    "osztondij": 25000
+}
 
 
 ###patch students
