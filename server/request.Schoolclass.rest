@@ -117,7 +117,7 @@ Content-Type: application/json
 }
 
 ### delete class by id
-DELETE {{host}}/api/schoolclasses/1
+DELETE {{host}}/api/schoolclasses/25
 Content-Type: application/json
 Accept: application/json
 
