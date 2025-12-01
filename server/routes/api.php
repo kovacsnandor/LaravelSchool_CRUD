@@ -51,8 +51,61 @@ Route::get('usersme', [UserController::class, 'indexSelf'])
     ->middleware('auth:sanctum', 'ability:usersme:get');
 //endregion
 
+//region Tanar abilities
+Route::get('students', [UserController::class, 'index'])
+    ->middleware('auth:sanctum', 'ability:students:get');
+
+Route::get('schoolclasses', [UserController::class, 'index'])
+    ->middleware('auth:sanctum', 'ability:schoolclasses:get');
+
+Route::get('playingsports', [UserController::class, 'index'])
+    ->middleware('auth:sanctum', 'ability:playingsports:get');
+
+Route::get('sports', [UserController::class, 'index'])
+    ->middleware('auth:sanctum', 'ability:sports:get');
+
+Route::post('students', [PlayingsportController::class, 'store'])
+    ->middleware('auth:sanctum', 'ability:students:post');
+
+Route::patch('students/{id}', [UserController::class, 'update'])
+->middleware('auth:sanctum', 'ability:students:patch');
+
+Route::patch('students/{id}', [UserController::class, 'destroy'])
+->middleware('auth:sanctum', 'ability:students:delete');
+
+//Sajatmodositasok
+Route::delete('usersme', [UserController::class, 'destroySelf'])
+->middleware('auth:sanctum', 'ability:usersme:delete');
+
+Route::patch('usersme', [UserController::class, 'updateSelf'])
+->middleware('auth:sanctum', 'ability:usersme:patch');
+
+Route::get('usersme', [UserController::class, 'indexSelf'])
+    ->middleware('auth:sanctum', 'ability:usersme:get');
+//endregion
+
+//region Diak abilities
+Route::get('schoolclasses', [UserController::class, 'index'])
+    ->middleware('auth:sanctum', 'ability:schoolclasses:get');
+
+Route::get('sports', [UserController::class, 'index'])
+    ->middleware('auth:sanctum', 'ability:sports:get');
+
+Route::get('playingsports', [UserController::class, 'index'])
+    ->middleware('auth:sanctum', 'ability:playingsports:get');
+
+//sajatmodositasok
+Route::delete('usersme', [UserController::class, 'destroySelf'])
+->middleware('auth:sanctum', 'ability:usersme:delete');
+
+Route::patch('usersme', [UserController::class, 'updateSelf'])
+->middleware('auth:sanctum', 'ability:usersme:patch');
+
+Route::get('usersme', [UserController::class, 'indexSelf'])
+    ->middleware('auth:sanctum', 'ability:usersme:get');
 
 
+//endregion
 
 //region Palyingsport
 Route::get('playingsports', [PlayingsportController::class, 'index']);
