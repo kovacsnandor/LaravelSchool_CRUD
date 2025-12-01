@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateStudentRequest extends FormRequest
 {
@@ -19,17 +20,14 @@ class UpdateStudentRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules(int $studentId): array
     {
         return [
-            // return [
-            //
-            'igazolvanyszam' => [
-                'required',
-                'string',
-                'max:20',
-                'unique:students',              
-            ],
-        ];
+                'igazolvanyszam' => [          
+                'required',             
+                'string',             
+                'max:20',           
+                Rule::unique('students')->ignore($studentId), 
+                ]];
     }
 }
