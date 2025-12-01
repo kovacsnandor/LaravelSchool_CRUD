@@ -98,36 +98,89 @@ Authorization: Bearer {{token}}
 
 
 
-### teszt
-get {{host}}/api/x
+# ### teszt
+# get {{host}}/api/x
 
-### get classes
-GET {{host}}/api/schoolclasses
+# ### get products
+# get {{host}}/api/products
+# Accept: application/json
+# Content-Type: application/json
+# Authorization: Bearer {{token}}
 
-### get class by id
-GET {{host}}/api/schoolclasses/25
 
-### post class
-POST {{host}}/api/schoolclasses
+# ### get product by id
+# get {{host}}/api/products/1
+# Accept: application/json
+# Content-Type: application/json
+# Authorization: Bearer {{token}}
+
+# ### post products
+# POST  {{host}}/api/products
+# Accept: application/json
+# Content-Type: application/json
+# Authorization: Bearer {{token}}
+
+# {
+#     "category": "Bogyós",
+#     "name": "f3333xx",
+#     "description": "Kézzel termelt egészség",
+#     "picture": "https:\/\/hur.webmania.cc\/img\/malna.jpg",
+#     "price": 8000,
+#     "stock": 22
+# }
+
+# ### delete product by id
+# delete {{host}}/api/products/104
+# Accept: application/json
+# Content-Type: application/json
+# Authorization: Bearer {{token}}
+
+
+# ### post products
+# PATCH {{host}}/api/products/1
+# Accept: application/json
+# Content-Type: application/json
+# Authorization: Bearer {{token}}
+
+
+# {
+#     "price": 1002,
+#     "stock": "eee"
+# }
+
+
+###get students
+GET {{host}}/api/students/
+
+
+###get students by id
+GET {{host}}/api/students/567
+
+
+###delete students by id
+delete {{host}}/api/students/568
+
+###post students
+POST  {{host}}/api/students
 Accept: application/json
 Content-Type: application/json
 
 {
-    "osztalyNev": "8d"
+    "diakNev": "Tóth Márton",
+    "schoolclassId": 3,
+    "neme": true,
+    "iranyitoszam": "4024",
+    "lakHelyseg": "Debrecen",
+    "lakCim": "Kossuth utca 18.",
+    "szulHelyseg": "Nyíregyháza",
+    "szulDatum": "2007.11.23",
+    "igazolvanyszam": "AB482817",
+    "atlag": 3.7,
+    "osztondij": 25000
 }
 
-### delete class by id
-DELETE {{host}}/api/schoolclasses/1
-Content-Type: application/json
-Accept: application/json
 
-### patch class by id
-PATCH {{host}}/api/schoolclasses/28
-Accept: application/json
-Content-Type: application/json
 
-{
-    "osztalyNev": "8boss"
-}
-
+# ###patch students
+# PATCH {{host}}/api/students
 

@@ -14,7 +14,9 @@ return new class extends Migration
            Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->string('diakNev');
-            $table->foreignId('schoolclassId')->constrained('schoolclasses')->onDelete('cascade');
+            //dzsingiszkan hatalmas birodalma ._.
+            $table->foreignId('schoolclassId')->constrained('schoolclasses')->onDelete('restrict');
+            //erre kellene megirni hibakodot :)
             $table->boolean('neme')->default(true);
             $table->string('iranyitoszam')->nullable();
             $table->string('lakHelyseg')->nullable();

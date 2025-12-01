@@ -22,7 +22,6 @@ class UpdateSportRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => ['required', 'integer', 'exists:sports,id'],
             'sportNev' => ['required', 'string', 'max:255'],
         ];
     }

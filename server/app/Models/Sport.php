@@ -14,4 +14,9 @@ class Sport extends Model
         'id',
         'sportNev',
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
 }
