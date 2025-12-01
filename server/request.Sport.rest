@@ -22,7 +22,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-    "sportNev": "Táj csíí"
+    "sportNev": "Táj csí1"
 }
 
 ### patch sport
