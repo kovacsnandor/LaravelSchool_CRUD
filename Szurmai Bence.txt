@@ -12,7 +12,7 @@ tanár:
 diak: 	
 	- get: /api/classes
 	- get: /api/sports
-	- get: /api/playingsports
+	- get: /api/playingsports 
 
 Speciális tekérdezések
 - get /api/studentofclass/1 :
