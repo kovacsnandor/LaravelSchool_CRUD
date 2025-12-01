@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Schoolclass;
 use App\Http\Requests\StoreSchoolclassRequest;
 use App\Http\Requests\UpdateSchoolclassRequest;
-use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Request as FacadesRequest;
 
 class SchoolclassController extends Controller
 {
@@ -147,22 +148,36 @@ class SchoolclassController extends Controller
 
     public function destroy($id)
     {
-        // Megkeressük az osztályt az ID alapján
-        $schoolclass = Schoolclass::find($id);
+        try {
+            // Megkeressük az osztályt az ID alapján
+            $schoolclass = Schoolclass::find($id);
 
-        if (!$schoolclass) {
+            if (!$schoolclass) {
+                return response()->json([
+                    'message' => 'Az osztály nem található!',
+                    'data' => null
+                ], 404, [], JSON_UNESCAPED_UNICODE);
+            }
+
+            // Törlés
+            $schoolclass->delete();
+
             return response()->json([
-                'message' => 'Az osztály nem található!',
+                'message' => 'Sikeresen törölted az osztályt!',
                 'data' => null
-            ], 404, [], JSON_UNESCAPED_UNICODE);
+            ], 200, [], JSON_UNESCAPED_UNICODE);
+        } catch (QueryException $e) {
+            // Ellenőrizzük, hogy ez egy "Duplicate entry for key" hiba-e (MySQL hibakód: 23000 vagy 1062)
+            if ($e->getCode() == 23000 || str_contains($e->getMessage(), 'Duplicate entry')) {
+                $data = [
+                    'message' => 'Hiba történt a törlés során!'
+                ];
+                // Kliens hiba, ami jelzi a kérés érvénytelenségét
+                return response()->json($data, 409, [], JSON_UNESCAPED_UNICODE); // 409 Conflict ajánlott
+            }
+
+            // Ha nem ez a hiba volt, dobjuk tovább az eredeti kivételt
+            throw $e;
         }
-
-        // Törlés
-        $schoolclass->delete();
-
-        return response()->json([
-            'message' => 'Sikeresen törölted az osztályt!',
-            'data' => null
-        ], 200, [], JSON_UNESCAPED_UNICODE);
     }
 }

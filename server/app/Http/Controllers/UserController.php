@@ -60,19 +60,27 @@ class UserController extends Controller
                 $abilities = ['*'];
                 break;
             case 2:
-                //Raktáros
+                //tanar
                 $abilities = [
+                    'users:get',
+                    'students:get',
+                    'schoolclasses:get',
+                    'sports:get',
+                    'playingsports:get',
+                    'students:post',
+                    'students:patch',
+                    'students:delete',
                     'usersme:delete',
                     'usersme:patch',
                     'usersme:get',
-                    'products:create',
-                    'products:delete',
-                    'products:update',
                 ];
                 break;
             default:
-                //Vásárló
+                //Diak
                 $abilities = [
+                    'sports:get',
+                    'schoolclasses:get',
+                    'playingsports:get',
                     'usersme:delete',
                     'usersme:patch',
                     'usersme:get',
@@ -240,7 +248,7 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, int $id)
     {
         $row = User::find($id);
-        
+
         if ($row) {
             # code...
             $status = 200;
@@ -302,7 +310,7 @@ class UserController extends Controller
     {
         //Kivesszük a törlendő user-t
         $userToDestroy = $request->user();
-        // A Policy-t használjuk: 
+        // A Policy-t használjuk:
         $this->authorize('delete', $userToDestroy);
         // ... törlés logika
         //A user tokenjeinek törlése
@@ -325,7 +333,7 @@ class UserController extends Controller
 
         //Kivesszük a módosítandó user-t
         $userToUpdate = $request->user();
-        // A Policy-t használjuk: 
+        // A Policy-t használjuk:
         $this->authorize('update', $userToUpdate);
 
         $status = 200;
@@ -346,7 +354,7 @@ class UserController extends Controller
     {
         //Kivesszük a megmutatandó usert
         $userToGet= $request->user();
-        // A Policy-t használjuk: 
+        // A Policy-t használjuk:
         $this->authorize('view', $userToGet);
         $status = 200;
         $data = [

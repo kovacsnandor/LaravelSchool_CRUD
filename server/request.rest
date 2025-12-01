@@ -13,7 +13,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "email": "vasarlo1@example.com",
+    "email": "tanar@example.com",
     "password": "123"
 }
 
@@ -37,7 +37,7 @@ Accept: application/json
 Authorization: Bearer {{token}}
 
 ### post user
-POST {{host}}/api/users 
+POST {{host}}/api/users
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {{token}}
@@ -102,7 +102,7 @@ Authorization: Bearer {{token}}
 get {{host}}/api/x
 
 ### get products
-get {{host}}/api/products
+get {{host}}/api/students
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{token}}
@@ -115,18 +115,23 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 ### post products
-POST  {{host}}/api/products
+POST  {{host}}/api/students
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "category": "Bogyós",
-    "name": "f3333xx",
-    "description": "Kézzel termelt egészség",
-    "picture": "https:\/\/hur.webmania.cc\/img\/malna.jpg",
-    "price": 8000,
-    "stock": 22
+    "diakNev": "Molnár Ferenc Caramel",
+    "schoolclassId": 15,
+    "neme": 1,
+    "iranyitoszam": "2766",
+    "lakHelyseg": "Tápiószele",
+    "lakCim": "Seres ut 4.",
+    "szulHelyseg": "Újszász",
+    "szulDatum": "2015-05-28",
+    "igazolvanyszam": "VX518999",
+    "atlag": "3.0",
+    "osztondij": "25000",
 }
 
 ### delete product by id
@@ -146,4 +151,34 @@ Authorization: Bearer {{token}}
 {
     "price": 1002,
     "stock": "eee"
+}
+
+
+### get classes
+GET {{host}}/api/schoolclasses
+
+### get class by id
+GET {{host}}/api/schoolclasses/25
+
+### post class
+POST {{host}}/api/schoolclasses
+Accept: application/json
+Content-Type: application/json
+
+{
+    "osztalyNev": "8d"
+}
+
+### delete class by id
+DELETE {{host}}/api/schoolclasses/25
+Content-Type: application/json
+Accept: application/json
+
+### patch class by id
+PATCH {{host}}/api/schoolclasses/28
+Accept: application/json
+Content-Type: application/json
+
+{
+    "osztalyNev": "8boss"
 }

@@ -6,6 +6,7 @@ use App\Models\Sport;
 use App\Http\Requests\StoreSportRequest;
 use App\Http\Requests\UpdateSportRequest;
 use Illuminate\Database\QueryException;
+use PhpParser\Node\Stmt\TryCatch;
 
 class SportController extends Controller
 {
@@ -147,21 +148,28 @@ class SportController extends Controller
     {
         //
         // Megkeressük az osztályt az ID alapján
-        $sport = Sport::find($id);
+        try {
+            $sport = Sport::find($id);
 
-        if (!$sport) {
+            if (!$sport) {
+                return response()->json([
+                    'message' => 'Not found id: ' . $id,
+                    'data' => null
+                ], 404, [], JSON_UNESCAPED_UNICODE);
+            }
+
+            // Törlés
+            $sport->delete();
+
             return response()->json([
-                'message' => 'Nem OK',
+                'message' => 'OK',
                 'data' => null
-            ], 404, [], JSON_UNESCAPED_UNICODE);
+            ], 200, [], JSON_UNESCAPED_UNICODE);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => "Server error: {$e->getCode()}",
+                'data' => null
+            ], 500, [], JSON_UNESCAPED_UNICODE);
         }
-
-        // Törlés
-        $sport->delete();
-
-        return response()->json([
-            'message' => 'OK',
-            'data' => null
-        ], 200, [], JSON_UNESCAPED_UNICODE);
     }
 }
