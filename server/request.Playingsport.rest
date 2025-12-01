@@ -6,95 +6,95 @@
 ### @token = 12|ibiwTdr77o8ppToh1tBxIkckBNb8ECjIjLgaweTaa757cdef
 
 
-### login
-# @name login
-POST {{host}}/api/users/login
-Accept: application/json
-Content-Type: application/json
+# ### login
+# # @name login
+# POST {{host}}/api/users/login
+# Accept: application/json
+# Content-Type: application/json
 
-{
-    "email": "vasarlo1@example.com",
-    "password": "123"
-}
+# {
+#     "email": "vasarlo1@example.com",
+#     "password": "123"
+# }
 
-###
-@token = {{login.response.body.data.token}}
+# ###
+# @token = {{login.response.body.data.token}}
 
-### logout user
-POST  {{host}}/api/users/logout
-Accept: application/json
-Authorization: Bearer {{token}}
-
-
-### get users
-GET  {{host}}/api/users
-Accept: application/json
-Authorization: Bearer {{token}}
-
-### get user by id
-GET  {{host}}/api/users/1
-Accept: application/json
-Authorization: Bearer {{token}}
-
-### post user
-POST {{host}}/api/users 
-Content-Type: application/json
-Accept: application/json
-Authorization: Bearer {{token}}
-
-{
-    "name":  "Vásárló2",
-    "email": "vasarlo2@example.com",
-    "password": "123"
-}
-
-### patch user
-PATCH {{host}}/api/users/2
-Content-Type: application/json
-Accept: application/json
-Authorization: Bearer {{token}}
-
-{
-    "name": "No Boss"
-}
-
-### delete user
-DELETE {{host}}/api/users/2
-Content-Type: application/json
-Accept: application/json
-Authorization: Bearer {{token}}
+# ### logout user
+# POST  {{host}}/api/users/logout
+# Accept: application/json
+# Authorization: Bearer {{token}}
 
 
-### User csak önmagát törölheti
-DELETE {{host}}/api/usersme
-Content-Type: application/json
-Accept: application/json
-Authorization: Bearer {{token}}
+# ### get users
+# GET  {{host}}/api/users
+# Accept: application/json
+# Authorization: Bearer {{token}}
 
-### A bejelentkezett user a jelszavát módosítja
-PATCH {{host}}/api/usersme
-Content-Type: application/json
-Accept: application/json
-Authorization: Bearer {{token}}
+# ### get user by id
+# GET  {{host}}/api/users/1
+# Accept: application/json
+# Authorization: Bearer {{token}}
 
-{
-    "password": "ronaldo"
-}
+# ### post user
+# POST {{host}}/api/users 
+# Content-Type: application/json
+# Accept: application/json
+# Authorization: Bearer {{token}}
 
-### A bejelentkezett user egy adatát módosítja. A role tiltott
-PATCH {{host}}/api/usersme
-Content-Type: application/json
-Accept: application/json
-Authorization: Bearer {{token}}
+# {
+#     "name":  "Vásárló2",
+#     "email": "vasarlo2@example.com",
+#     "password": "123"
+# }
 
-{
-     "name": "admin1"
-}
+# ### patch user
+# PATCH {{host}}/api/users/2
+# Content-Type: application/json
+# Accept: application/json
+# Authorization: Bearer {{token}}
 
-### A bejelentkezett user önmagát lekérheti
-GET  {{host}}/api/usersme
-Accept: application/json
-Authorization: Bearer {{token}}
+# {
+#     "name": "No Boss"
+# }
+
+# ### delete user
+# DELETE {{host}}/api/users/2
+# Content-Type: application/json
+# Accept: application/json
+# Authorization: Bearer {{token}}
+
+
+# ### User csak önmagát törölheti
+# DELETE {{host}}/api/usersme
+# Content-Type: application/json
+# Accept: application/json
+# Authorization: Bearer {{token}}
+
+# ### A bejelentkezett user a jelszavát módosítja
+# PATCH {{host}}/api/usersme
+# Content-Type: application/json
+# Accept: application/json
+# Authorization: Bearer {{token}}
+
+# {
+#     "password": "ronaldo"
+# }
+
+# ### A bejelentkezett user egy adatát módosítja. A role tiltott
+# PATCH {{host}}/api/usersme
+# Content-Type: application/json
+# Accept: application/json
+# Authorization: Bearer {{token}}
+
+# {
+#      "name": "admin1"
+# }
+
+# ### A bejelentkezett user önmagát lekérheti
+# GET  {{host}}/api/usersme
+# Accept: application/json
+# Authorization: Bearer {{token}}
 
 
 
@@ -105,20 +105,20 @@ get {{host}}/api/x
 get {{host}}/api/playingsports
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer {{token}}
+# Authorization: Bearer {{token}}
 
 
 ### get playingsports by id
-get {{host}}/api/playingsports/2
+get {{host}}/api/playingsports/673
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer {{token}}
+# Authorization: Bearer {{token}}
 
 ### post playingsports
 POST  {{host}}/api/playingsports
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer {{token}}
+# Authorization: Bearer {{token}}
 
 {
     "studentId": 1,
@@ -126,17 +126,17 @@ Authorization: Bearer {{token}}
 }
 
 ### delete playingsports by id
-delete {{host}}/api/playingsports/670
+delete {{host}}/api/playingsports/674
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer {{token}}
+# Authorization: Bearer {{token}}
 
 
 ### post playingsports
 PATCH {{host}}/api/playingsports/1
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer {{token}}
+# Authorization: Bearer {{token}}
 
 
 {
