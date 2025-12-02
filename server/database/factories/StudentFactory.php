@@ -15,42 +15,31 @@ class StudentFactory extends Factory
         return \Faker\Factory::create('hu_HU');
     }
 
-    function getScholarShip(float $atlag): int
+    function getScholarShip(float $averageGrade): int
     {
-        //     // float -> integer normalizálás (pl. 4.1 = 41)
-        //     $norm = (int) round($atlag * 10);
 
-        //     // tömbös szabályok: [határérték, ösztöndíj]
-        //     $szabalyok = [
-        //         ['max' => 19, 'penz' => 0],       // 1.0 – 1.9
-        //         ['max' => 24, 'penz' => 8000],    // 2.0 – 2.4
-        //         ['max' => 34, 'penz' => 25000],   // 2.5 – 3.4
-        //         ['max' => 44, 'penz' => 42000],   // 3.5 – 4.4
-        //         ['max' => 50, 'penz' => 59000],   // 4.5 – 5.0
-        //     ];
-
-        //     foreach ($szabalyok as $rule) {
-        //         if ($norm <= $rule['max']) {
-        //             return $rule['penz'];
-        //         }
-        //     }
-
-        //     // elvileg sose fut ide, de biztonságnak marad
-        //     return 0;
-
-        $osztondijTabla = [
-            '2.0' => 8000,
-            '2.5' => 16000,
-            '3.5' => 25000,
-            '4.5' => 42000,
+        $scholarshipTiers = [
+            "4.5" => 42000,
+            "3.5" => 25000,
+            "2.5" => 16000,
+            "2.0" => 8000,
         ];
 
-        foreach ($osztondijTabla as $hatar => $osszeg) {
-            if ($atlag < $hatar) {
-                return $osszeg;
+        $scholarshipAmount = 0;
+
+        // Az 5.0-ás átlag külön kezelése a maximális díj miatt
+        if ($averageGrade >= 5.0) {
+            return 40000;
+        }
+
+        foreach ($scholarshipTiers as $minAverage => $amount) {
+            if ($averageGrade >= (float)$minAverage) {
+                // Megtaláltuk a legmagasabb szintet, amibe beleesik
+                $scholarshipAmount = $amount;
+                break;
             }
         }
-        return 59000;
+        return $scholarshipAmount; // 0 Ft-ot ad vissza 4.00 alatti átlag esetén
     }
 
 
