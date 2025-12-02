@@ -22,7 +22,7 @@ class StoreSportRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'sportNev' => 'required|string',
+            'sportNev' => 'required|unique:sports|string',
         ];
     }
 

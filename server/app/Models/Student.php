@@ -22,4 +22,8 @@ class Student extends Model
         'atlag',
         'osztondij',
     ];
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
 }

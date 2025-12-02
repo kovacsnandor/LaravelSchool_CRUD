@@ -51,9 +51,9 @@ class StudentController extends Controller
         } catch (QueryException $e) {
             if ($e->getCode() == 23000 || str_contains($e->getMessage(), 'Duplicate entry')) {
                 $data = [
-                    'message' => 'Insert error: The given name already exists, please choose another one',
+                    'message' => 'Insert error: The given id number already exists, please choose another one',
                     'data' => [
-                        'name' => $request->input('name')
+                        'igazolvanyszam' => $request->input('igazolvanyszam')
                     ]
                 ];
                 return response()->json($data, 409, options: JSON_UNESCAPED_UNICODE);

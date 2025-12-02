@@ -16,7 +16,7 @@ class PlayingsportController extends Controller
     public function index()
     {
         //
-            try {
+        try {
             //code...
             $rows = Playingsport::all();
             $status =  200;
@@ -32,7 +32,6 @@ class PlayingsportController extends Controller
             ];
         }
         return response()->json($data, $status, options: JSON_UNESCAPED_UNICODE);
-    
     }
 
     /**
@@ -42,7 +41,7 @@ class PlayingsportController extends Controller
     {
         try {
             $row = Playingsport::create($request->all());
- 
+
             $data = [
                 'message' => 'ok',
                 'data' => $row
@@ -59,10 +58,10 @@ class PlayingsportController extends Controller
                     ]
                 ];
                 // Kliens hiba, ami jelzi a kérés érvénytelenségét
-                
+
                 return response()->json($data, 409, options: JSON_UNESCAPED_UNICODE); // 409 Conflict ajánlott
             }
- 
+
             // Ha nem ez a hiba volt, dobjuk tovább az eredeti kivételt, vagy kezeljük másképp
             throw $e;
         }
@@ -74,8 +73,8 @@ class PlayingsportController extends Controller
     public function show(int $id)
     {
         //
-         //
-          $row = Playingsport::find($id);
+        //
+        $row = Playingsport::find($id);
         if ($row) {
             # code...
             $status = 200;
@@ -92,7 +91,6 @@ class PlayingsportController extends Controller
         }
 
         return response()->json($data, $status, options: JSON_UNESCAPED_UNICODE);
-        
     }
 
     /**
@@ -101,7 +99,7 @@ class PlayingsportController extends Controller
     public function update(UpdatePlayingsportRequest $request, Playingsport $playingsport, int $id)
     {
         //
-           $row = $playingsport::find($id);
+        $row = $playingsport::find($id);
         if ($row) {
             # code...
             $status = 200;
@@ -118,8 +116,6 @@ class PlayingsportController extends Controller
             ];
         }
         return response()->json($data, $status, options: JSON_UNESCAPED_UNICODE);
-
-
     }
 
     /**
@@ -128,21 +124,28 @@ class PlayingsportController extends Controller
     public function destroy(int $id)
     {
         $row = Playingsport::find($id);
-        if ($row) {
-            # code...
-            $status = 200;
+        if (!$row) {
+            return response()->json([
+                'message' => "Not_Found id: $id",
+                'data' => null
+            ], 404, options: JSON_UNESCAPED_UNICODE);
+        }
+        try {
             $row->delete();
-            $data = [
+            return response()->json([
                 'message' => 'OK',
                 'data' => ['id' => $id]
-            ];
-        } else {
-            $status = 404;
-            $data = [
-                'message' => "Not_Found id: $id ",
-                'data' => null
-            ];
+            ], 200, options: JSON_UNESCAPED_UNICODE);
+        } catch (QueryException $e) {
+            // VALÓDI MySQL hibakód
+            $mysqlError = $e->errorInfo[1];
+            if ($mysqlError == 1451) {
+                return response()->json([
+                    'message' => "Delete failed (FK constraint). Id: $id",
+                    'data' => null
+                ], 409, options: JSON_UNESCAPED_UNICODE);
+            }
+            throw $e; // egyéb hibák
         }
-                return response()->json($data, $status, options: JSON_UNESCAPED_UNICODE);
     }
 }

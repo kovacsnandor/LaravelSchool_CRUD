@@ -115,18 +115,27 @@ Content-Type: application/json
 # Authorization: Bearer {{token}}
 
 ### post playingsports
-POST  {{host}}/api/playingsports
+POST  {{host}}/api/students
 Accept: application/json
 Content-Type: application/json
 # Authorization: Bearer {{token}}
 
 {
-    "studentId": 1,
-    "sportId": 28
+    "diakNev": "Tóth Márton",
+    "schoolclassId": 3,
+    "neme": true,
+    "iranyitoszam": "4024",
+    "lakHelyseg": "Debrecen",
+    "lakCim": "Kossuth utca 18.",
+    "szulHelyseg": "Nyíregyháza",
+    "szulDatum": "2007.11.23",
+    "igazolvanyszam": "AB482817",
+    "atlag": 3.7,
+    "osztondij": 25000
 }
 
 ### delete playingsports by id
-delete {{host}}/api/playingsports/674
+delete {{host}}/api/students/3
 Accept: application/json
 Content-Type: application/json
 # Authorization: Bearer {{token}}

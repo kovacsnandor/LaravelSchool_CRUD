@@ -6,20 +6,6 @@
 ### @token = 12|ibiwTdr77o8ppToh1tBxIkckBNb8ECjIjLgaweTaa757cdef
 
 
-### login
-# @name login
-POST {{host}}/api/users/login
-Accept: application/json
-Content-Type: application/json
-
-{
-    "email": "admin@example.com",
-    "password": "123"
-}
-
-###
-@token = {{login.response.body.data.token}}
-
 
 ### get sports
 GET  {{host}}/api/sports
@@ -36,7 +22,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-    "sportNev": "Táj csí"
+    "sportNev": "Táj csí1"
 }
 
 ### patch sport
@@ -49,7 +35,7 @@ Accept: application/json
 }
 
 ### delete sport
-DELETE {{host}}/api/sports/41
+DELETE {{host}}/api/sports/1
 Content-Type: application/json
 Accept: application/json
 
