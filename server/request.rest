@@ -13,7 +13,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "email": "tanar@example.com",
+    "email": "admin@example.com",
     "password": "123"
 }
 
@@ -109,7 +109,7 @@ Authorization: Bearer {{token}}
 
 
 ### get product by id
-get {{host}}/api/products/1
+get {{host}}/api/students/1
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{token}}
@@ -129,13 +129,13 @@ Authorization: Bearer {{token}}
     "lakCim": "Seres ut 4.",
     "szulHelyseg": "Újszász",
     "szulDatum": "2015-05-28",
-    "igazolvanyszam": "VX518999",
+    "igazolvanyszam": "VX1234567",
     "atlag": "3.0",
-    "osztondij": "25000",
+    "osztondij": "25000"
 }
 
 ### delete product by id
-delete {{host}}/api/products/104
+delete {{host}}/api/students/1
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{token}}
@@ -146,7 +146,6 @@ PATCH {{host}}/api/products/1
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{token}}
-
 
 {
     "price": 1002,
@@ -164,6 +163,7 @@ GET {{host}}/api/schoolclasses/25
 POST {{host}}/api/schoolclasses
 Accept: application/json
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
     "osztalyNev": "8d"
@@ -173,11 +173,13 @@ Content-Type: application/json
 DELETE {{host}}/api/schoolclasses/25
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
 
 ### patch class by id
 PATCH {{host}}/api/schoolclasses/28
 Accept: application/json
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
     "osztalyNev": "8boss"
