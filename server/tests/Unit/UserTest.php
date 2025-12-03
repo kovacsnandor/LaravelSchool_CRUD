@@ -2,15 +2,25 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+
 
 class UserTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     */
-    public function test_example(): void
-    {
-        $this->assertTrue(true);
-    }
+    use DatabaseTransactions;
+    
+    //Létezi-es a tábla
+
+    //Megvan-e az összes mező
+
+    //A user tábla oszlopainak és típusainak ellenőrzése
+
+    //Megvan-e a user id alapján?
+
+     //A users tábla rekorjainak száma
+
+    //Létezik-e a user?
+
+    //Jelszó ellenőrzés
 }
