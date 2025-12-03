@@ -2,8 +2,10 @@
 
 namespace Tests\Unit;
 
+use App\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class UserTest extends TestCase
@@ -38,12 +40,84 @@ class UserTest extends TestCase
 
 
     //A user tábla oszlopainak és típusainak ellenőrzése
+    public function test_the_user_table_columns_have_the_expected_types()
+    {
+        // Lekérdezzük a tábla aktuális oszlopait
+        $columns = Schema::getColumnListing('users');
+
+        // Ellenőrizzük, hogy minden várt mező létezik-e
+        $this->assertEmpty(
+            array_diff(array_keys($this->expectedSchema), $columns),
+            'Hiányzó oszlopok a felhasználók táblában.'
+        );
+
+        // Végigiterálunk a várt sémán
+        foreach ($this->expectedSchema as $columnName => $expectedLaravelType) {
+
+            // Lekérdezzük az adatbázis oszloptípusát (ez a módszer eltérhet DB-nként)
+            // MySQL-nél a getColumnType() metódus a legmegbízhatóbb:
+            $actualDbSqlType = Schema::getColumnType('users', $columnName);
+
+            //Összehasonlítjuk az aktuális típust a várt típussal
+            $isTypeMatch = $actualDbSqlType == $expectedLaravelType;
+            $this->assertTrue(
+                $isTypeMatch,
+                "A '{$columnName}' oszlop típusa nem egyezik. Várt: '{$expectedLaravelType}', Kapott DB-típus: '{$actualDbSqlType}'."
+            );
+        }
+    }
+
+
 
     //Megvan-e a user id alapján?
+    public function test_check_if_users_getting_fetched_with_id(): void
+    {
+        $response = DB::table("users")->find(1);
+        // $response = User::find(3);
+        //dd($response->id);
+        //Adott mező értékének ellenőrzése
+        $this->assertEquals(1, $response->id);
+        $this->assertEquals('admin@example.com', $response->email);
+    }
+
+
 
     //A users tábla rekorjainak száma
+    function test_users_table_record_number()
+    {
+
+        //A rekordok számának ellenőrzése
+        $response = DB::table("users")->get();
+        // dd($response);
+        //A userek száma 3-e
+        $this->assertCount(3, $response);
+        //A rekordok száma > mint 0
+        $this->assertGreaterThan(0, count($response));
+    }
+
 
     //Létezik-e a user?
+
+    function test_does_the_user_exist()
+    {
+        $email = "admin@example.com";
+        //1. módszer
+        $this->assertDatabaseHas('users', ['email' => $email]);
+
+        //2. módszer (ORM)
+        $user = User::where('email', $email)->first();
+        //dd($user);
+        $this->assertNotNull($user);
+
+        //3. módszer
+        $this->assertTrue(
+            condition: DB::table('users')
+                ->where('email', $email)
+                ->exists()
+        );
+    }
+
+
 
     //Jelszó ellenőrzés
 }
