@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="D:\Dropbox\Public\Iskola\Tanmenetek\2025-2026\13d\Projektek\LaravelSchool_CRUD\server\phpunit.xml" tests="2" assertions="2" errors="0" failures="0" skipped="0" time="0.399543">
+    <testsuite name="Unit" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.007585">
+      <testsuite name="Tests\Unit\ExampleTest" file="D:\Dropbox\Public\Iskola\Tanmenetek\2025-2026\13d\Projektek\LaravelSchool_CRUD\server\tests\Unit\ExampleTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.007585">
+        <testcase name="test_that_true_is_true" file="D:\Dropbox\Public\Iskola\Tanmenetek\2025-2026\13d\Projektek\LaravelSchool_CRUD\server\tests\Unit\ExampleTest.php" line="12" class="Tests\Unit\ExampleTest" classname="Tests.Unit.ExampleTest" assertions="1" time="0.007585"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="Feature" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.391958">
+      <testsuite name="Tests\Feature\ExampleTest" file="D:\Dropbox\Public\Iskola\Tanmenetek\2025-2026\13d\Projektek\LaravelSchool_CRUD\server\tests\Feature\ExampleTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.391958">
+        <testcase name="test_the_application_returns_a_successful_response" file="D:\Dropbox\Public\Iskola\Tanmenetek\2025-2026\13d\Projektek\LaravelSchool_CRUD\server\tests\Feature\ExampleTest.php" line="13" class="Tests\Feature\ExampleTest" classname="Tests.Feature.ExampleTest" assertions="1" time="0.391958"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>

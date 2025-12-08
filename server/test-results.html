@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Test Documentation</title>
+        <style>
+            body {
+                text-rendering: optimizeLegibility;
+                font-family: Source SansSerif Pro, Arial, sans-serif;
+                font-variant-ligatures: common-ligatures;
+                font-kerning: normal;
+                margin-left: 2rem;
+                background-color: #fff;
+                color: #000;
+            }
+
+            body > ul > li {
+                font-size: larger;
+            }
+
+            h2 {
+                font-size: larger;
+                text-decoration-line: underline;
+                text-decoration-thickness: 2px;
+                margin: 0;
+                padding: 0.5rem 0;
+            }
+
+            ul {
+                list-style: none;
+                margin: 0 0 2rem;
+                padding: 0 0 0 1rem;
+                text-indent: -1rem;
+            }
+
+            .success:before {
+                color: #4e9a06;
+                content: '✓';
+                padding-right: 0.5rem;
+            }
+
+            .defect {
+                color: #a40000;
+            }
+
+            .defect:before {
+                color: #a40000;
+                content: '✗';
+                padding-right: 0.5rem;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Database (Tests\Unit\Database)</h2>
+        <ul>
+            <li class="success">Database creation end tables exists</li>
+            <li class="success">Sports table structure</li>
+            <li class="success">Students schoolclasses relationships</li>
+        </ul>
+        <h2>Example (Tests\Feature\Example)</h2>
+        <ul>
+            <li class="success">The application returns a successful response</li>
+        </ul>
+        <h2>Example (Tests\Unit\Example)</h2>
+        <ul>
+            <li class="success">That true is true</li>
+            <li class="success">TheAssert is true</li>
+            <li class="success">Check person map</li>
+        </ul>
+        <h2>Playingsport (Tests\Unit\Playingsport)</h2>
+        <ul>
+            <li class="success">Does the playingsports table contain all fields provider with data set "id oszlop"</li>
+            <li class="success">Does the playingsports table contain all fields provider with data set "studentId oszlop"</li>
+            <li class="success">Does the playingsports table contain all fields provider with data set "sportId oszlop"</li>
+            <li class="success">The playingsports table columns have the expected types provider with data set "id oszlop"</li>
+            <li class="success">The playingsports table columns have the expected types provider with data set "studentId oszlop"</li>
+            <li class="success">The playingsports table columns have the expected types provider with data set "sportId oszlop"</li>
+            <li class="success">Exists playingsports table</li>
+            <li class="success">Does the playingsports table contain all fields</li>
+            <li class="success">The playingsports table columns have the expected types</li>
+        </ul>
+        <h2>Schoolclass (Tests\Unit\Schoolclass)</h2>
+        <ul>
+            <li class="success">Exists schoolclasses table</li>
+            <li class="success">Does the schoolclasses table contain all fields</li>
+            <li class="success">The schoolclasses table columns have the expected types</li>
+        </ul>
+        <h2>Sport (Tests\Unit\Sport)</h2>
+        <ul>
+            <li class="success">Exists sports table</li>
+            <li class="success">Does the sports table contain all fields</li>
+            <li class="success">The sports table columns have the expected types</li>
+        </ul>
+        <h2>Student (Tests\Unit\Student)</h2>
+        <ul>
+            <li class="success">Exists students table</li>
+            <li class="success">Does the students table contain all fields</li>
+            <li class="success">The students table columns have the expected types</li>
+        </ul>
+        <h2>Student Factory (Tests\Unit\StudentFactory)</h2>
+        <ul>
+            <li class="success">Get scholarship returns correct amount for average grade with data set "Max ösztöndíj - pontos 5.0"</li>
+            <li class="success">Get scholarship returns correct amount for average grade with data set "Max ösztöndíj - 5.0 felett"</li>
+            <li class="success">Get scholarship returns correct amount for average grade with data set "4.5 szint - pontos 4.5"</li>
+            <li class="success">Get scholarship returns correct amount for average grade with data set "4.5 szint - 4.5 és 5.0 között"</li>
+            <li class="success">Get scholarship returns correct amount for average grade with data set "3.5 szint - pontos 3.5"</li>
+            <li class="success">Get scholarship returns correct amount for average grade with data set "3.5 szint - 3.5 és 4.5 között"</li>
+            <li class="success">Get scholarship returns correct amount for average grade with data set "2.5 szint - pontos 2.5"</li>
+            <li class="success">Get scholarship returns correct amount for average grade with data set "2.5 szint - 2.5 és 3.5 között"</li>
+            <li class="success">Get scholarship returns correct amount for average grade with data set "2.0 szint - pontos 2.0"</li>
+            <li class="success">Get scholarship returns correct amount for average grade with data set "2.0 szint - 2.0 és 2.5 között"</li>
+            <li class="success">Get scholarship returns correct amount for average grade with data set "Minimum alatt - 1.99"</li>
+            <li class="success">Get scholarship returns correct amount for average grade with data set "Minimum alatt - 0.0"</li>
+        </ul>
+        <h2>User (Tests\Unit\User)</h2>
+        <ul>
+            <li class="success">Exists users table</li>
+            <li class="success">Does the user table contain all fields</li>
+            <li class="success">The user table columns have the expected types</li>
+            <li class="defect">Check if users getting fetched with id</li>
+            <li class="success">Users table record number</li>
+            <li class="success">Does the user exist</li>
+            <li class="success">A given password matches the users hashed password</li>
+        </ul>
+    </body>
+</html>

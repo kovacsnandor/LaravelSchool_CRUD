@@ -154,7 +154,7 @@ class SchoolclassController extends Controller
 
             if (!$schoolclass) {
                 return response()->json([
-                    'message' => 'Az osztály nem található!',
+                    'message' => 'The class could not be found.',
                     'data' => null
                 ], 404, [], JSON_UNESCAPED_UNICODE);
             }
@@ -163,14 +163,15 @@ class SchoolclassController extends Controller
             $schoolclass->delete();
 
             return response()->json([
-                'message' => 'Sikeresen törölted az osztályt!',
+                'message' => 'The deletion was successful.',
                 'data' => null
             ], 200, [], JSON_UNESCAPED_UNICODE);
         } catch (QueryException $e) {
             // Ellenőrizzük, hogy ez egy "Duplicate entry for key" hiba-e (MySQL hibakód: 23000 vagy 1062)
             if ($e->getCode() == 23000 || str_contains($e->getMessage(), 'Duplicate entry')) {
                 $data = [
-                    'message' => 'Hiba történt a törlés során!'
+                    'message' => 'The deletion failed. ID: ' . $id,
+                    'data' => null
                 ];
                 // Kliens hiba, ami jelzi a kérés érvénytelenségét
                 return response()->json($data, 409, [], JSON_UNESCAPED_UNICODE); // 409 Conflict ajánlott

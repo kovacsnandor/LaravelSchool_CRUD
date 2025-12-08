@@ -1,0 +1,6 @@
+Example (Tests\Feature\Example)
+ [x] The application returns a successful response
+
+Example (Tests\Unit\Example)
+ [ ] That true is true
+
