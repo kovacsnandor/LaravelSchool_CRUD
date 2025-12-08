@@ -14,7 +14,6 @@ Content-Type: application/json
 
 {
     "email": "admin@example.com",
-    "email": "admin@example.com",
     "password": "123"
 }
 
@@ -60,7 +59,7 @@ Authorization: Bearer {{token}}
 }
 
 ### delete user
-DELETE {{host}}/api/users/2
+DELETE {{host}}/api/users/14
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {{token}}
