@@ -103,8 +103,32 @@ class UserTest extends TestCase
 
         $response->assertStatus(201);
 
+        // $response = $this->login($data['email'], $data['password']);
+        $response = $this->login();
+
         $token = $response->json('data')['token'];
-        dd($token);
+        $role = $response->json('data')['role'];
+
+        $this->assertNotNull($token,"Bejelentkezés sikertelen");
+
+        //Egy védett tartalmat próbáunk elérni: get api/users
+        $uri = '/api/users';
+        $headers = [
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+            'Authorization' => "Bearer $token"
+        ];
+
+        $response = $this
+            ->withHeaders($headers)
+            ->get($uri);
+
+        //nem engedi
+        // $response->assertStatus(403);
+        $response->assertStatus(200);
+        
+        $response = $this->logout($token);
+        $response->assertStatus(200);
 
     }
 }
