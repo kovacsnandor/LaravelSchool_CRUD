@@ -13,7 +13,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "email": "tanar@example.com",
+    "email": "admin@example.com",
     "password": "123"
 }
 
@@ -121,17 +121,17 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "diakNev": "Molnár Ferenc Caramel",
-    "schoolclassId": 15,
-    "neme": 1,
-    "iranyitoszam": "2766",
-    "lakHelyseg": "Tápiószele",
-    "lakCim": "Seres ut 4.",
-    "szulHelyseg": "Újszász",
-    "szulDatum": "2015-05-28",
-    "igazolvanyszam": "VX518999",
-    "atlag": "3.0",
-    "osztondij": "25000",
+    "diakNev": "Tóth Márton",
+    "schoolclassId": 3,
+    "neme": true,
+    "iranyitoszam": "4024",
+    "lakHelyseg": "Debrecen",
+    "lakCim": "Kossuth utca 18.",
+    "szulHelyseg": "Nyíregyháza",
+    "szulDatum": "2007.11.23",
+    "igazolvanyszam": "AB482817",
+    "atlag": 3.7,
+    "osztondij": 25000
 }
 
 ### delete product by id
