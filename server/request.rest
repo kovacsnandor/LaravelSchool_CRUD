@@ -14,6 +14,7 @@ Content-Type: application/json
 
 {
     "email": "admin@example.com",
+    "email": "admin@example.com",
     "password": "123"
 }
 
@@ -132,6 +133,17 @@ Authorization: Bearer {{token}}
     "igazolvanyszam": "VX1234567",
     "atlag": "3.0",
     "osztondij": "25000"
+    "diakNev": "Tóth Márton",
+    "schoolclassId": 3,
+    "neme": true,
+    "iranyitoszam": "4024",
+    "lakHelyseg": "Debrecen",
+    "lakCim": "Kossuth utca 18.",
+    "szulHelyseg": "Nyíregyháza",
+    "szulDatum": "2007.11.23",
+    "igazolvanyszam": "AB482817",
+    "atlag": 3.7,
+    "osztondij": 25000
 }
 
 ### delete product by id
