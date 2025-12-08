@@ -8,7 +8,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 
 class PlayingsportTest extends TestCase
 {
-    
+    protected $table = 'playingsports';
 
     public static function expectedSchemaDataProvider()
     {
@@ -20,23 +20,24 @@ class PlayingsportTest extends TestCase
     }
 
     #[DataProvider('expectedSchemaDataProvider')]
-    public function test_does_the_playingsports_table_contain_all_fields(string $column, string $type): void
+    public function test_does_the_playingsports_table_contain_all_fields(string $expectedColumn, string $expectedType): void
     {
         //Ellenőrizze, hogy megvannak-e a tábla mezői
-        $this->assertTrue(Schema::hasColumn('playingsports', $column), "A '$column' oszlop nem letezik");
+        $this->assertTrue(Schema::hasColumn($this->table, $expectedColumn), "A '$expectedColumn' oszlop nem letezik");
     }
 
     #[DataProvider('expectedSchemaDataProvider')]
-    public function test_the_playingsports_table_columns_have_the_expected_types($columnName, $expectedLaravelType)
+    public function test_the_playingsports_table_columns_have_the_expected_types($expectedColumn, $expectedType)
     {
         //Ellenőrizze, hogy jók-e a típusai
 
-        $actualDbSqlType = Schema::getColumnType('playingsports', $columnName);
+        $actualDbSqlType = Schema::getColumnType($this->table, $expectedColumn);
 
-        $isTypeMatch = $actualDbSqlType == $expectedLaravelType;
+        
+        $isTypeMatch = $actualDbSqlType == $expectedType;
         $this->assertTrue(
             $isTypeMatch,
-            "A '{$columnName}' oszlop típusa nem egyezik. Várt: '{$expectedLaravelType}', Kapott DB-típus: '{$actualDbSqlType}'."
+            "A '{$expectedColumn}' oszlop típusa nem egyezik. Várt: '{$expectedType}', Kapott DB-típus: '{$actualDbSqlType}'."
         );
     }
 
@@ -46,7 +47,7 @@ class PlayingsportTest extends TestCase
     {
         //Ellenőrizze, hogy megvan-e a tábla
 
-        $this->assertTrue(Schema::hasTable('playingsports'), "A playingsports tábla nem létezik");
+        $this->assertTrue(Schema::hasTable($this->table), "A playingsports tábla nem létezik");
     }
 
 }
