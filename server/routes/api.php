@@ -24,9 +24,7 @@ Route::post('users/logout', [UserController::class, 'logout']);
 Route::post('users', [UserController::class, 'store']);
 
 
-// ---------------------------------------------------------
-// USERSME (minden role-nak, csak egyszer definiáljuk!)
-// ---------------------------------------------------------
+//region usersme
 Route::get('usersme', [UserController::class, 'indexSelf'])
     ->middleware(['auth:sanctum', 'ability:usersme:get']);
 
@@ -35,11 +33,9 @@ Route::patch('usersme', [UserController::class, 'updateSelf'])
 
 Route::delete('usersme', [UserController::class, 'destroySelf'])
     ->middleware(['auth:sanctum', 'ability:usersme:delete']);
+//endregion
 
-
-// ---------------------------------------------------------
-// ADMIN ENDPOINTS
-// ---------------------------------------------------------
+//region admin endpoint
 Route::get('users', [UserController::class, 'index'])
     ->middleware(['auth:sanctum', 'ability:admin']);
 
@@ -51,8 +47,7 @@ Route::patch('users/{id}', [UserController::class, 'update'])
 
 Route::delete('users/{id}', [UserController::class, 'destroy'])
     ->middleware(['auth:sanctum', 'ability:admin']);
-
-
+//endregion
 
 //region Students
 Route::get('students', [StudentController::class, 'index']);
@@ -65,7 +60,7 @@ Route::delete('students/{id}', [StudentController::class, 'destroy'])
     ->middleware(['auth:sanctum', 'ability:students:delete']);
 //endregion
 
-//region Palyingsport
+//region Playingsport
 Route::get('playingsports', [PlayingsportController::class, 'index']);
 Route::get('playingsports/{id}', [PlayingsportController::class, 'show']);
 Route::post('playingsports', [PlayingsportController::class, 'store'])

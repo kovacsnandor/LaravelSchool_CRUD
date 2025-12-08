@@ -103,28 +103,33 @@ get {{host}}/api/x
 
 ### get classes
 GET {{host}}/api/schoolclasses
+Authorization: Bearer {{token}}
 
 ### get class by id
 GET {{host}}/api/schoolclasses/25
+Authorization: Bearer {{token}}
 
 ### post class
 POST {{host}}/api/schoolclasses
 Accept: application/json
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
     "osztalyNev": "8d"
 }
 
 ### delete class by id
-DELETE {{host}}/api/schoolclasses/25
+DELETE {{host}}/api/schoolclasses/26
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
 
 ### patch class by id
 PATCH {{host}}/api/schoolclasses/28
 Accept: application/json
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
     "osztalyNev": "8boss"
