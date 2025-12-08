@@ -2,6 +2,7 @@ SELECT * from sports;
 SELECT * from students;
 SELECT * from schoolclasses;
 SELECT * from playingsports;
+SELECT * from users;
 
 
 SELECT sc.osztalyNev, COUNT(*) letszam from students st
