@@ -42,7 +42,6 @@ class StudentTest extends TestCase
         ];
     }
 
-    #[DataProvider('expectedSchemaDataProvider')]
     public function test_exists_students_table(): void
     {
         //Ellenőrizze, hogy megvan-e a tábla
