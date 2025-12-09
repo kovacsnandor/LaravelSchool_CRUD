@@ -105,7 +105,7 @@ class UserTest extends TestCase
 
         // $response = $this->login($data['email'], $data['password']);
         $response = $this->login();
-
+        dd($response);
         $token = $response->json('data')['token'];
         $role = $response->json('data')['role'];
 
